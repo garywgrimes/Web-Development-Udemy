@@ -1,0 +1,237 @@
+All the website files will be in the public_html folder.
+Fireftp will help you upload your file directly to the website. Fireftp is a addon in the firefox
+jsbin.com is the free site that runs your HTML, CSS, JavaScript files directly.
+
+index.html is the special name which refers to the main page of a webpage.
+
+
+HTML:
+
+Structures of a Webpage:
+
+To view the source code of any website, just click Ctrl + U or right click and click view page source
+
+
+<!doctype html> // tells the browser that this is a HTML file
+<html>
+<head>
+    <title>Example Domain</title>
+
+    <meta charset="utf-8" />  //character type
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> //content set
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> // view port is important for mobile devices
+    <style type="text/css">  // this a  style tag... see where the style tag ends
+        body {
+        background-color: #f0f0f2;
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        
+    }
+    div {   
+        width: 600px;
+        margin: 5em auto;
+        padding: 50px;
+        background-color: #fff;
+        border-radius: 1em;
+    }
+    a:link, a:visited {
+        color: #38488f;
+        text-decoration: none;
+    }
+    @media (max-width: 700px) {
+        body {
+            background-color: #fff;
+        }
+        div {
+            width: auto;
+            margin: 0 auto;
+            border-radius: 0;
+            padding: 1em;
+        }
+    }
+    </style>    
+</head>
+
+<body>
+<div>   // div is just a division of content
+    <h1>Example Domain</h1>
+    <p>This domain is established to be used for illustrative examples in documents. You may use this
+    domain in examples without prior coordination or asking for permission.</p>
+    <p><a href="http://www.iana.org/domains/example">More information...</a></p>
+</div>
+</body>
+</html>
+
+
+<h1> to <h6> are the valid header tags in HTML
+// html ingore the line breaks and more than one space.
+
+//To make the spacing of the line smaller use <br/> tag. It is self closing tag.
+
+ <hr/> creates a horizontal line. It is also a self closing tag.
+
+ Text formatting or Text  decoration:
+
+ Use <strong></strong> tag to bold. We no longer use <b></b> tag.
+
+ <em></em> emphasis It makes the text italics.
+
+ <u></u> for underline.
+
+ <strike></strike> to struck through
+
+ Unordered list:
+<h2>My favourite foods</h2>
+ <ul> // ul stands for unordered list
+ 	<li>Pizza</li> // li stands for list
+ 	<li>Burger</li>
+ 	<li>Wings</li>
+ </ul>
+ // For unordered list we ge bullet points
+
+
+ Ordered List:
+<h2>My favourite times of a day</h2>
+ <ol>
+ 	<li> bed time</li>
+ 	<li>lunch time</li>
+ 	<li>dinner time</li>
+ </ol>
+
+ // For ordered list we get the numbers instead of bullet points.
+
+
+ Images:
+
+ //first get an image ;)
+
+ <img src="images/man.jpg"/> This a self closing tag.
+ Here the images is the folder in the location where the index.html is located.
+
+ we can also give the image URL from some where.
+ <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/07/George_Formby_with_the_army_in_France%2C_1940_cropped.jpg/100px-George_Formby_with_the_army_in_France%2C_1940_cropped.jpg">
+ Use width and height to control the image size.
+
+
+ Forms:
+
+ Use the form tags to create forms.
+<form>
+     <input type = "text" value =" type here kushal"/>
+
+     <input type ="email"> //This email type will automatically validate if the email is valid or not.
+
+    <textarea>My content area tag goes here</textarea>
+    //This text area will allow user to input more data.
+
+
+//This select and the option tag will make the drop down menu
+    <select>
+        <option>Select an option..</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+
+
+// Radio buttons
+
+    <input type = "radio" name ="color"/> Red
+    <input type = "radio" name ="color"/> Green
+    <input type = "radio" name ="color"/> Blue
+
+    When I use the name attribute and set it to the same thing as all the option then it will only allow to select one of the option only.
+
+    If I do as:
+    <input type = "radio" /> Red
+    <input type = "radio" /> Green
+    <input type = "radio" /> Blue
+
+    Then I can select more than one radio button
+
+//The check box will allow you to select more than one option. Even though you put the name attribute, it will allow you to select multiple options
+
+    <input type = "checkbox"/>Dog
+    <input type = "checkbox"/>Cat
+    <input type = "checkbox"/>Finish
+
+//submit the form
+
+    <input type ="submit" value ="Submit this form Kushal"/>
+    This will use the get method by  default the submit the form. Once you click the submit method it will put a ? in the URL. It will send all the variables from the form in the form of String.
+
+    When you put the name attribute in the form items that means you can submit it.
+    For instance:
+    <input type ="text" placeholder="enter address .." name = "address">
+    Then when I click submit, the URL will appear as
+    file:///C:/Users/Kushal/Documents/Udemy%20Course/The%20Complete%20Web%20Developer%20Course/My%20Websites/1.%20HTML/index.html?address=1408+
+
+    we can see that there is ?address = 1408
+    Here the address is from the name field and the 1408 is the value I entered in the client side.
+
+    JavaScript and Php can iteract with the values submitted from any webpage.
+
+
+</form>
+
+
+HTML links:
+We use <a> tag
+  <a href="http://www.google.com">Google...</a> <br/> //external link
+<p> <a href="http://www.google.com">Google...</a></p> //external link
+<p><a href="HelloWorld.html">HelloWorld internal link</a></p> //internal link
+
+Back to top link:
+In the long webpage, when we need to go to the top of the webpage or some certain section we can use the link method to go there.
+
+At the top of the body we can put the anchor like,
+<a name ="top"/> This is a self closing tag
+
+Then say, at the bottom, we can link it to the top as
+<p><a href="#top"> Go back to top...</a><p/>
+
+
+
+HTML Tables:
+
+    <table>
+      <tr><th>Name</th><th>Age</th><th>Gender</th></tr>
+      <tr><td>Kushal Pradhan</td><td>26</td><td>Male</td></tr>
+      <tr><td>Aman</td><td>25</td><td>Male</td></tr>
+    </table>
+
+tr is the table row
+th is the table heading
+td is the table data
+
+HTML Entities:
+
+If I want to show <a>, or any special character, appear in the webpage, we need html entities. HTML entites always start with & and end with ;
+
+&lt;a>   will display  <a> in the webpage.
+
+In html you cannot simply give more than one space in the webpage, we need to use html entities for that.
+1&nbsp;&nbsp;&nbsp;2 will create 3 spaces between 1 and 2 in the webpage.
+
+To find the html entites, google html entities and go to the link of w3schools.com to find more
+
+HTML IFRAME:
+How to embed content from another webpage into your webpage?
+    We use <iframe> tag
+
+    <iframe src="helloworld.html"></iframe>
+
+This is exactly how you can put the contents of the youtube videos in your webpage.
+If you see in the youtube video they have the embed option that gives you the iframe code that you can copy to your webpage.
+However, we cannot test locally because, now we are using the file protocal instead of http  (See the URL). To test the http iframe, go to codeschool.com
+
+
+<form action =" http://space-facts.com/earth"/>
+<input type="submit" value="Click Here !"/>
+</form>
+Here the target will set where the form will go when we hit submit. In this case it is set to go to a web page.
+
+HTML: putting it all together
+
+<a href="MyWebsite.html"></a>
