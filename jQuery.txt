@@ -35,6 +35,162 @@ How get the jQuery to my webpages?
 1. Go to www.jquery.com and download the jQuery.
 2. Load it in your HTML document using the script below:
 	<script src ="jquery.min.js"> </script>
+
+	We put this script just before the </body> tag.
 3. TO use the jQuery create another file called application.js and include that inside your HTML as
 	<script src ="application.js"> </script>
+	This is put just after the jQuery script.
 
+Descendant selectors:
+
+$("#kushal li"); selects all the Descendant of the ID kushal
+$("#kushal > li"); will select all the direct Descendants of the ID kushal
+
+Space matter here.
+
+Multiple selectors:
+
+$(".promo, #france");
+Use comma to separate the selectors
+
+
+$("#destination li:first"); will select the first element of the destination ID in the list
+$("#destination li:last"); will select the last item
+$("#destination li:odd"); selects the middle item , remember that the index starts at 0
+$("#destination li:even"); will select 0,2,4,6 and so on
+
+
+Filter by traversing:
+
+$("destination li"); selects all the li under the ID of destination
+Now,
+$("destination").find("li"); using the find method to the DOM object. It has two parts, selection and traversal. Here the first
+part is selection and the second part is the traversal.
+
+$("li:first");
+is equivalent to $("li").first(); Similarly, $("destination").last();
+
+Walking the DOM:
+We can also use the method chaining.
+
+$("li").first().next();
+$("li").first().next().prev();
+
+$("li").first().next().parent(); //traverse up
+$("destination").childern("li");//traverse down It will only give the childrern of the destination ID.Here find() would have
+selected all of the list items.
+
+Working with DOM:
+
+Appending to the DOM
+
+var price = $('<p> From $ 399.99</p>'); We are sending the HTML code in jQuery.
+
+To append the new element to the DOM, we can either use .append(<element>) or .prepend(<element>) or .after(<element>) or 
+.before(<element>)
+If I do $('.vacation').after(price); It will put the node after the .vacation node in the DOM
+Similarly$('.vacation').before(price) will put the node before the .vacation node in the DOM
+
+$('.vacation').prepend(price) will add the price node as the first child of the li node of the vacation class
+$('.vacation').append(price) will add the price node as the last child of the li node of the vacation  class
+
+Here li is the unordered list with class set as vacation.
+
+$('.button').remove(); will remove the button node from the DOM
+
+
+.appendTo(<element>)
+price.appendTo($('.vacation'));  This has the slightly different syntax (the reference point comes at the end)
+
+Similarly, there is .prependTo(<element>), .insertAfter(<element>) and .insertBefore(<element>).
+
+Passing in a function:
+
+$(document).ready(<event handler function>);
+The ready method takes an event handler function as a argument.
+
+.on(<event>, <event handler>)
+
+If want to do sth when button is clicked, then I do the following:
+
+$('.button').on('click', function(){
+// runs some code when the button is pressed.
+
+});
+
+
+$(document).ready(function(){ // this function runs when DOM is ready
+	$('button').on('click', function(){ // this function runs when the button is clicked
+		var price = $('<p>  From $399.99 only </p>');
+		$('.vacation').append(price);
+		$('button').remove();
+	})
+
+})
+
+The problem with this code is that, it will change the price of all the buttons when any one button is pressed. So, to 
+address this problemo we use $(this).remove(); instead of $('button').remove();
+
+We also need to change the $('.vacation').append(price); to $(this).closest('.vacation').append(price); which will add 
+the price as a sibling after button. The closest will make sure that the price will be appended as the child of the 
+vacation not something else. If the button was in div then without the closest, it would have appended to the div, which we
+don't want.
+
+closest is gonna find the 0 or 1 node when it searches for the ansestor with the proper class while the parent will search 
+all of the ansestor with proper class
+
+To avoid the duplication of the code, we can do sth like:
+
+var vacation = $(this).closest('.vacation');
+var amount = vacation.data('price');
+vacation.append(price);
+
+With this we only query the DOM once for this element.
+
+Event delegation (On with a selector):
+In the previous code, if we add new buttons anywhere, they will trigger this click handler. So, we can do like:
+$('.vacation button').on('click', function(){});
+But the better way to do the same thing is:
+$('.vacation').on('click', 'button', function(){}); This will only target the buttons if it is inside tha vacation class
+
+
+Filtering:
+$('.vacation').filter('.onsale'); This will find the elements with a class of .vacation and on .onsale
+
+Class Manipulation:
+
+.addClass(<class>) and .removeClass(<class>)
+
+
+$('#filters').on('click', 'onsale-filter', function(){
+$('.highlighted').removeClass('highlighted');  // removes the highlighted class before adding it back
+$('vacation').filter('.onsale').addClass('highlighted');
+});
+
+
+Listening to the DOM events:
+
+To make something hidden using the CSS, we can do like:
+.kushal{
+	display:none;
+}
+
+Say we need to display more info when we click some button:
+Steps: Watch for the click, find the ticket and show the ticket info.
+
+$('confirmation').on('click', 'button', function(){
+$(this).closest('.confirmation').find('.ticket').slideDown(); // this will search up through the ansestor
+																and the find will search down through the 
+																childrern. The slideDown will slideDown the
+																 more info. At first the ticket info is hidden 
+																 with the CSS display none option as shown above.
+
+}); 
+This whole code has to be inside the DOM ready function.
+
+Similarly there is also slideUp() and slideToggle() methods.
+
+alert("Hello"); this javascript will popup will give the new window saying Hello.
+$('li').length; will return the number of nodes on that page
+
+alert($('button').length); will give the popup window giving the number of buttons
