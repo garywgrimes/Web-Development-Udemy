@@ -1,0 +1,40 @@
+DOM is the document object model which is a tree like structure created by browsers so we can quickly find the HTML elements using javascript.
+Inside the DOM, HTML elements becomes "nodes" which have relationship with one another.
+JavaScript gives developers a language to interact with the DOM.
+Each browser has slightly different DOM structure.
+If javaScript uses jquery to interact with the DOM, then it will work on most mordern browsers.
+
+jQuery(<code>); is the jQuery function.
+
+jQuery("h1"); is equivalent to $("h1");
+jQuery("p"); is equivalent to $("p");
+
+We can use the CSS selectors in the jQuery.
+
+Fetching an element's text:
+$("h1").text();
+
+Modifying an element's text:
+$("h1").text("Hello there..");
+
+We need to make sure that the DOM has finished loading the HTML content before we can reliably use jQuery.
+
+So, listening for document ready:
+
+jQuery(document).ready(function(){
+	<code>
+});
+
+
+jQuery(document).ready(function(){
+$("h1").text("Hello there..");
+});
+
+
+How get the jQuery to my webpages?
+1. Go to www.jquery.com and download the jQuery.
+2. Load it in your HTML document using the script below:
+	<script src ="jquery.min.js"> </script>
+3. TO use the jQuery create another file called application.js and include that inside your HTML as
+	<script src ="application.js"> </script>
+
