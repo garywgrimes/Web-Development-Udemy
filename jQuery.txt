@@ -194,3 +194,243 @@ alert("Hello"); this javascript will popup will give the new window saying Hello
 $('li').length; will return the number of nodes on that page
 
 alert($('button').length); will give the popup window giving the number of buttons
+
+Expanding on on():
+
+Some mouse event we can listen to: 
+	1. click
+	2. dblclick
+	3. focusin
+	4. focusout
+	5. mousedown
+	6. mouseup
+	7. mousemove
+	8. mouseout
+	9. mouseover
+	10. mouseleave
+	11. mouseenter // fires when the mouse is first positioned over the element
+
+Avoiding the duplication:
+
+$(document).ready(function(){
+$('.confirmation').on('click', 'button', function(){
+$(this).closest('.confirmation').find('.ticket').slideDown();
+});
+$('.confirmation').on('mouseenter', 'h3', function(){
+	$(this).closest('.confirmation').find('.ticket').slideDown();
+});
+});
+
+Here is a duplication of the code, we are repeating the same code for the click and the mouseenter event. Here is how we handle that:
+
+
+function showTicket(){
+	$(this).closest('.confirmation').find('.ticket').slideDown;
+}
+$(document).ready(function(){
+	$('.confirmation').on('click','button', showTicket);
+	$('.confirmation').on('click', 'h3', showTicket);
+
+});
+
+
+
+Keyboard Events:
+Some Keyboard event are: keypress, keydown, keyup (it will listen when someone stops pressing the key...key up jada)
+and Form events like: blur, select, change, focus, submit.
+
+var price = $(this).closest('.vacation').data('price'); // Returns price as a string
+
+var price = + $(this).closest('.vacation').data('price'); // Use + to convert the string to a number
+
+Getting the quantity:
+.val() and to set the value we can do:  .val(<new value>)
+
+Pass a number or string to using .text() method
+
+Some methods to fade the text:
+.fadeIn(), .fadeOut(), .fadeToggle()
+
+Link Layover:
+In the CSS file say we have:
+
+.comments{
+	display: none;
+}
+
+In the javaScript file we have:
+
+$(document).ready(function(){   // when the DOM is ready and loaded
+	$('.vacation').on('click', '.expand', function(){ // we fetch the vacation class and listen to the click event on the link which
+														has the expand class on it and run our event handler.
+														// Now we need to find the comments methods and fade it in.
+
+	$(this).closest('.vacation').find('.comments').fadeToggle();
+	});
+
+});
+
+
+we add an event parameter  inside the event handler as 
+
+$(document).ready(function(){   // when the DOM is ready and loaded
+	$('.vacation').on('click', '.expand', function(event){ 
+		event.preventDefault(); //  The browser will still handle the click event but will prevent it from bubbling up to each parent
+	$(this).closest('.vacation').find('.comments').fadeToggle();
+	});
+
+});
+
+
+event.stopPropagation():
+This will not allow to bubble up to the ansestor
+If we do not do this then something called bubble up will reach to the 
+top of the document and make the webpages go the top of the page. This the default
+behaviour of the browser. The browser will still handle the click event but will prevent it from
+bubbling up to the parent node
+
+
+Taming CSS:
+
+HTML : 		content
+CSS: 		style
+JavaScript: behaviour
+
+We can use both CSS and javascript to change the style of something
+
+jQuery object methods to access CSS:
+
+.css(<attr>, <value>) to set the CSS attribute and value
+.css(<attr>) to get current value by specifying the attribute
+.css(<object>) to send in an object
+
+Changing the style:
+
+$(document).ready(function(){
+
+	$('#vacation').on('click', '.vacation', function(){
+
+		$(this).css('background-color', '#252b30');
+		$(this).css('border-color', '1px solid #967');
+	});
+});
+
+OR by method chaining as:
+
+$(document).ready(function(){
+`
+	$('#vacation').on('click', '.vacation', function(){
+
+		$(this).css('background-color', '#252b30').css('border-color', '1px solid #967'); // this is method chaining
+	});
+});
+
+OR by sending the objects as:
+
+
+$(document).ready(function(){
+
+	$('#vacation').on('click', '.vacation', function(){
+
+		$(this).css({'background-color':'#252b30','border-color':'1px solid #967'}); // notice the colon
+	});
+});
+Passing in a javascript object as an argument is a common jQuery pattern.
+
+
+.show() and .hide() method:
+We can do like: $(this).find('.price').css('display', 'block'); // because the display was set to none in the CSS
+Better way to do the same stuff is :
+
+$(this).find('.price').show(); This is same as CSS syntax but easier to read and understand. Internally it does the same thing
+
+$(document).ready(function(){
+	$('#vacation').on('click', '.vacation', function(){
+		$(this).css({'background-color':'#252b30','border-color':'1px solid #967'}); 
+		$(this).find('.price').show();
+	});
+});
+
+The good way to do these stuffs is to modularize the scope i.e javascript shouldn't handle the CSS style codes.
+
+We move the style codes to the application.css file like:
+
+.highlighted{
+	background-color: ##253b30;
+	border-color: #967;
+}
+.highlighted .price{
+	display: block;
+}
+
+$(document).ready(function(){
+	$('#vacation').on('click', '.vacation', function(){
+		$(this).addClass('highlighted');
+	});
+});
+
+Other jQuery object methods are:
+
+.toggleClass();
+.addClass();
+.removeClass();
+
+$(document).ready(function(){
+	$('#vacation').on('click', '.vacation', function(){
+		$(this).toggleClass('highlighted'); // This will make the show price show and hide
+	});
+});
+
+
+Animations:
+Adding movement
+jQuery has a method called .animate(<object>) will slowly animate from the current state to given state.
+
+$(this).animate({'top': '-10px'}); This will move the element 10px up from the current location of 0px.
+
+jQuery has a method called .hasClass(<class>) which will return ture or false depending upon if it has the given class
+
+$(document).ready(function(){
+	$('#vacation').on('click', '.vacation', function(){
+		$(this).toggleClass('highlight');
+		if($(this).hasClass('highlight')){
+			$(this).animate({'top': '-10px'});
+		}
+		else{
+			$(this).animate({'top': '0px'});
+		}
+	});
+});
+This will make the vacation package go up and down as we click
+
+Changing the speed of Animations:
+We can optionally add the speed as the second argument to the animate().
+$(this).animate({'top': '-10px'}, 400); // 400 is the millisecond, by default it is set to 400ms
+fast is 200ms
+slow is 600ms
+These keywords should be in the quotation.
+
+
+we can use the speed parameter in the animate(), slideToggle() and fadeToggle() methods.
+But we really need to put the animation stuffs in the CSS file as :
+
+$(document).ready(function(){
+	$('#vacation').on('click', '.vacation', function(){
+		$(this).toggleClass('highlight');
+	});
+});
+
+In the application.css
+
+.vacation{
+	transition: top 0.2s // if the top element is changed then it should do transition in 0.2 seconds
+						// this will only work with browsers that implement CSS tansitions
+						// Other way to support other browsers is to use browser prefixes
+
+	-moz-transition: top 0.2s;
+	-o-transition: top 0.2 s;
+	-webkit-transition: top 0.2s;
+}
+.highlight{
+	top: -10px;
+}
