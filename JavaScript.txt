@@ -1,0 +1,62 @@
+The prompt & Some Basic Numbers:
+> The JavaScript prompt aka console
+ What gets returned from the code is after the arrow.
+
+ JavaScript automatically recognize numbers (positive and negative) and can do the common operations like +,-,/, %.
+ It also does the operations in the BODMAS  (PEMDAS) rule.
+
+ Comparators:
+ Returns the boolean value.
+  > 6>4 will return true
+
+  > 3==4 will return false
+  >12!=4 will return true
+  > 8>=3 will return true
+
+  Strings:
+  Need to use Quotations
+
+  "Kushal"
+  can use + to concatenate the Strings
+  "Kushal" + " Pradhan"
+
+  \t will give one tab
+
+  "Kushal\tPradhan" will give Kushal	Pradhan
+  \" for Quotations. These are the escape sequence
+  \\ to produce one \
+  \n is the new line
+
+  String Comparisions:
+
+  "Kushal"=="Kushal"
+  true
+
+  JavaScript is case sensitive, so "Kushal"=="kushal" will return false
+
+  "kushal".length will return 6
+  "k p".length will return 3 // counts the spaces as well
+
+  Variable Discovery:
+
+  var is the Variable keyword.
+  var train =3
+
+  train will return 3
+
+  No spaces in the Variable names
+  No Variable name should start with a numbers
+  Use of underscore  and dollar sign is permitted.
+  Use CamelCase for the Variable name.
+
+  Changing Variable Contents:
+
+  var kp = 3
+  kp = 4 // reassigning the kp with 4; no need to declare the var again
+  kp+=3 is also allowed
+  kp++ and kp-- is allowed
+
+  
+
+
+

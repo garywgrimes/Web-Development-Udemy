@@ -1,0 +1,1 @@
+   margin: 0 auto;  // this will make the div within another div center aligned
