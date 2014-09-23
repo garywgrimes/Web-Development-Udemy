@@ -1,0 +1,78 @@
+Making the website interactive.
+
+Put the script tag elements in the head or right before the end of the body tag.
+<script></script> for the Javascript and <link></link> for the CSS files.
+
+alert("something") will generate a pop up dialog box in the webpage.
+<button onclick="alert('Hi Kushal')">Click me</button> will generate the popup when clicked in the button element
+
+Accessing the elements from the webpage:
+
+alert(document.getElementById("someId").innerHTML);   This will find the element with ID called someId and get the text from that
+id tag and show it in the dialog box with the alert.
+
+document.getElementById("someId").innerHTML="This is kushal learing Javascript";  This will set the content of the page
+// is used for the comments.
+/*
+	This is the multi line comment
+*/
+
+Responding to a Click:
+document.getElementById("someId").onclick=function(){
+    	alert("hi !")
+    }
+
+Changing website content:
+ document.getElementById("textChanger").onclick=function(){
+    	document.getElementById("firstdiv").innerHTML ="This is really awesome !!!"
+    }
+ 	document.getElementById("textAppender").onclick=function(){
+    	document.getElementById("secondDiv").innerHTML =document.getElementById("secondDiv").innerHTML +" great !!"
+    }
+ 	document.getElementById("textCreator").onclick=function(){
+    	document.getElementById("emptydiv").innerHTML ="<ul><li>Dog</li><li>Cat</li></ul>";
+    }
+
+Disapperaring Circles:
+<!doctype html>
+<html>
+<head>
+    <title>Learing javascript</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <style>
+   #circle{
+   	width:200px;
+   	height:200px;
+   	border-radius:100px;
+   	background-color: red;
+   }
+   .break{
+   	clear: both;
+   }
+   </style>
+   
+</head>
+
+<body>
+	
+    <div id ="circle"></div>
+
+    <script type="text/javascript">
+
+    document.getElementById("circle").onclick=function(){
+   		document.getElementById("circle").style.display="none";
+    }
+
+    </script>
+
+</body>
+</html>
+
+
+Variables:
+
+
+
