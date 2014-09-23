@@ -1,0 +1,257 @@
+Cascading Style Sheets (CSS):
+
+It's all about the style and look while the html is all about the content.
+
+
+Inline: (Just for showing here only...Developers do not do it this way)
+
+
+<p style ="color:blue;font-size:200%">This is CSS 101.</p>
+
+Why we don't do Inline?
+	To keep content and Style separate... for complicated websites we'll have endless style tags
+
+	We'll need to manually copy the same style tags if we want a certain section of HTML to be on the same style.
+
+
+Internal CSS:
+
+<style type="text/css">
+    body { //Everything inside the body tag will have the following style
+        background-color: #f0f0f2;
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        
+    }
+    div { //Everything inside the div tag will have the following style
+        width: 600px;
+        margin: 5em auto;
+        padding: 50px;
+        background-color: #fff;
+        border-radius: 1em;
+    }
+    a:link, a:visited {
+        color: #38488f;
+        text-decoration: none;
+    }
+    @media (max-width: 700px) {
+        body {
+            background-color: #fff;
+        }
+        div {
+            width: auto;
+            margin: 0 auto;
+            border-radius: 0;
+            padding: 1em;
+        }
+    }
+    </style>    
+
+    Advantage: If you update one thing it will update every thing of that type.
+
+
+Classes and ID:
+Class is a name for certain type of text which is going to have certain type of style.
+
+<p class="large"> This is some text</p>
+and in Style we do as:
+
+.large{
+	font-size:300%;
+
+}
+
+Class vs ID:
+Only use ID for a single element within a page. For things that will only appear on the page once.
+Class, we can use it many times.
+dot (.) for class
+Hash (#) for Id
+
+<p id="large"> This is some text</p> Now I should not use id = large again. Should be unique.
+
+We can use id and class together. We can also have more than one class in the span tag. Span tag allows you to style certain word within the span to have certain styles.
+
+
+DIVS:
+
+It is just a division of the webpage. Just a way to organize the content in a logical way and keep it organized. In the style, don't do .div{} just do div{}
+
+Div is always rectangle and we can control the layout using div to set the height and/or width
+
+We can also use class in the div as
+<div class ="bluebox">   </div> and then refer it in style as
+.bluebox{
+	
+}
+
+HTML Colors Codes:
+www.html-color-codes.info
+Pick the color, it gives the color code and you can use that code in your html and css files as background-color:#B645CD;
+
+The html color code lets you select the colors other than standard red, blue, yellow etc
+
+FLOATING:
+Anything floated to the left is gonna align left while anything floated to the right is gonna align right.
+Finally anything not floated is gonna be in between those two.
+
+.yellowbox{
+    background-color: yellow;
+    height:300px;
+    width: 300px;
+    float: right;
+  }
+
+  If we want the non floated items to be displayed normally, not in between the those floats then we need to use a div breaker after those floating divs as:
+
+  <div class="clear"></div>
+
+  And the .clear{
+                    clear:both;
+                }
+
+Sequence in which you put the items in the style tags is very important. You need to put the text decorations and the font weight kinda tags before the background color kinda tags.
+
+POSITIONING:
+
+.greenbox{
+        background-color: green;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        left: 100px; 
+        top: 100px;
+        z-index: 1;
+        }
+
+//left: margin of 100px so it will move to the right
+similarly for the top, bottom margins
+
+see what will happen if I set the top:-50px;
+It will clip some portion of that element
+
+one with larger z-index value will go on top. When we use the z-index value we must have the position: relative specified
+
+position: absolute;
+It's there but it is not affecting the flow of other elements. It will place the elements in the absolute position but while doing so it will not affect the flow and layout of the other existing elememts . The other elements will just ignore the presence of that element.
+
+position:fixed;
+Every thing else will ignore the presence of that element. fix div is independent of the browser window. Even though you sroll down or scroll up, the position of the fix element will remain same and all other elements will ignore the presence of that fix div element.
+
+position: static;
+When we do not give any positioning to the divs, the elements will be static. It is just like default.
+
+
+
+Margins:
+When we move the elements of the divs and don't want the it to overlap with other elements then we need to use the margins.
+
+When we do margin: 40px; its like we are creating a margin around that div.
+We can also do like
+margin: 50px 10px 200px 100px;
+50 is top  and the others are like in the clockwise direction. No comma inbetween.
+
+We can also do like, margin-left:40px;
+
+
+Padding:
+Similar to margins.
+Move the actual content of the divs.
+
+The p tag has the default margins and padding and so the get rid of that,
+we do
+p{
+    padding:0
+    margin:0;
+}
+
+When we do the padding it is actually gonna make the size of  the div increased.
+If I do like, padding: 10px 100px; then the for the remaining bottom and the left side it will repeat the padding sizes as 10p and 100px;
+
+  .gree{
+        background-color: green;
+        width: 100px;
+        height: 100px;
+        padding: 5px;      
+        }
+The actual size of the div is gonna be 105 px not 100px
+
+
+Borders:
+It adds the size of the divs.   
+
+border: 5px black solid;
+width of the border is 5px, color is back and look as solid
+
+See w3school for the different property of the border.
+
+border-radius=10px will give the curvy edges to the border instead of 90 degree angle.
+
+.blue{
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 20px;
+    border: 5px red dotted;
+    border-radius: 50px;
+}
+Here the background will look like a circle because the border radius is exactly the half of the width and height of the div.
+
+
+Fonts:
+
+use the font-family tag to specify the fonts.
+There are three different types of a font. They are Serif, san serif and monospace.
+See the w3school for details.
+
+ .font{
+ font-family: Arial, Helvetica, san-serif;
+}
+
+The first target is Arial, if arial is not available the see for the Helvetica and finally if helvetica is not available then choose the san-serif type fonts.
+
+
+Styling Text:
+
+When I do font-size: 200% then it wil make the font twice of what it otherwise would have been.
+If I do font-size: 20px; then it will make the size of the font 20px...this is not relative.
+Default font size is 16px.
+
+
+font-size:2em;
+1em is the default font size of 16px, so 2em is about 32px.
+
+
+
+Aligning Text:
+text-align: right;
+text-align: center;
+text-align: justify; 
+
+The align tag aligns text relative to the parent of the align tag i.e div tag or body tag.
+
+
+Styling Links:
+
+<a href="http://www.google.com"> Google</a> will open the site in the same window. To make it open it on the next window,
+
+<a href="http://www.google.com" target=_blank> Google</a>
+
+By default when you click the link then the link will turn purple meaning that the we have already visited that link. We can change the color purple to any other as
+
+a:visited{
+    color:green;
+}
+
+a:hover{
+    font-size: 40px;
+}
+Once you hover over the link then it will make it bigger.
+
+
+How to link external CSS file to our CSS files?
+It is better to separate the CSS codes from the actual HTML code. So, we take out all the CSS codes and put it in the separate text file called styles.css
+
+Then in the head of the HTML file, we just add
+<link rel="stylesheet" type="text/css" href="styles.css"/>  to link to that CSS file. Make sure that the CSS file is in the same directory as the html file or else give the proper location.
