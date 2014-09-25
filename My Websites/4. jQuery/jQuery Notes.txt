@@ -1,0 +1,265 @@
+It is a javascript library which sits on top of javascript.
+jQueryui is a pluginn on top of jQuery for user interface.
+
+Hook.js
+Tooltipster
+Magnific popup
+Unslider
+typeahead are some pluginns that sits on top of jQuery and helps to make the website development easier and beautiful.
+
+
+Embedding jQuery:
+Go to jQuery.com and download the compressed, production jQuery and it will open a ugly looking code in the new tab.
+Then save the page as in the directory where the index.html file is. Then in the script tag, just above the closing head 
+tag, give the file name of that jQuery in the src as <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+OR can do like <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+How to check if jQuery is installed?
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Learning jQuery</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+
+
+<script>
+    if(typeof jQuery != "undefined"){
+        alert("jQuery is installed..")
+    }
+    else{
+    alert("jQuery is not installed")
+    }
+</script>
+</body>
+</html>
+
+Here if I don't do the typeof command, then if jQuery is not installed then it will not find the varibable called jQuery and
+it will give error and not run. If I do the typeof method then even jQuery is not there, it will not give the error and still
+run the code on else condition.
+
+
+Detecting a click:
+
+<!doctype html>
+<html>
+<head>
+    <title>Learning jQuery</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <style>
+    #circle{
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        border-radius: 200px;
+   }
+   .square{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin-top: 10px;
+   }
+  </style>
+</head>
+<body>
+<div id ="circle"></div>
+<div class ="square"></div>
+<div class ="square"></div>
+
+<script>
+   $("#circle").click(function(){
+        alert("circle clicked");
+   });
+   $(".square").click(function(){
+
+    alert("square clicked");
+   });
+
+    $("div").click(function(){
+
+    alert("div clicked");
+   });
+</script>
+</body>
+</html>
+
+
+Changing the website content:
+
+<body>
+<div id ="circle"></div>
+<p>This is some text</p>
+<script>
+   $("#circle").click(function(){
+       $("p").html("the text has been changed");
+   });
+</script>
+</body>
+
+
+To get the content or attribute of the element
+<script>
+   $("#circle").click(function(){
+       alert($("p").html());
+   });
+</script>
+
+
+Hover function:
+$("#circle").hover(function(){
+    $("p").html("Hovering..")
+
+})
+
+Iframe:
+
+<body>
+<iframe src="http://www.cnn.com"></iframe>
+</body>
+This will simply show the cnn.com in the webpage.
+
+How to change the attribute of any element: Use the attr method.
+
+<body>
+<div id ="circle"></div>
+<p>This is some text</p>
+<iframe src="http://www.cnn.com"></iframe>
+<script>
+    $("#circle").hover(function(){
+         $("iframe").attr("src", "http://arsenal.com");
+   })
+</script>
+</body>
+
+
+
+Changing Styles:
+Use css method to get or set the attributes of the element.
+
+<script>
+    $("div").click(function(){
+        $(this).css("width");
+   })
+   This will just give the width when we alert
+
+<script>
+    $("div").click(function(){
+        $(this).css("width","400px");
+   })
+
+This will change the width to 400px.
+
+
+How to hide certain hide:
+<script>
+    $("div").click(function(){
+        $(this).css("display","none");
+   })
+</script>
+
+OR 
+<script>
+    $("div").click(function(){
+        $(this).hide();
+   })
+</script>
+
+
+How to give the fade effect:
+
+<script>
+    $("div").click(function(){
+        $(this).fadeOut();
+   })
+</script>
+
+
+Fading Content:
+<script>
+    $("#buttonFade").click(function(){
+        $("p").fadeOut(2000);  // the number is optional 
+   })
+    $("#fadein").click(function(){
+        $("p").fadeIn();
+    })
+</script>
+
+Instead of number we can also give as fadeOut("fast") or fadeIn("slow")
+
+Call back functions:
+
+ $("#buttonFade").click(function(){
+        $("p").fadeOut("slow",function(){
+            alert("fade out complete")            
+        });
+ })
+
+ After the fade out is complete, the function() will be executed, in this case a alert is in the function. This is 
+ called back function.
+
+ Animating Content:
+ <script>
+    $("#circle").click(function(){
+        $(this).animate({
+            width:"300px",
+            height:"300px",
+            borderRadius:"150px",
+            marginLeft:"100px",
+            marginTop:"100px"
+        },1500)
+   })
+   
+</script>
+
+
+AJAX (Asynchronous JavaScript and XML):
+Asynchronous: which can run in the background and we can run other bits of javascript codes at the same time
+It allows us to load some other file from the webserver while the user is doing something without refreshing the page.
+
+
+<script>
+$.get("test.html",function(data){
+	alert(data);
+})
+</script>
+
+OR
+
+<script>
+$.ajax({
+	url:"test.html"
+}).done(function(data){
+	alert(data);
+})
+</script>
+
+<script>
+$.ajax({
+	url:"test.html"
+}).done(function(data){
+	$("h1").html(data);
+})
+</script>
+
+<script>
+$.ajax({
+	url:"test.html"
+}).done(function(data){
+	$("h1").append(data);
+})
+</script>

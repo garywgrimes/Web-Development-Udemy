@@ -6,31 +6,15 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <style>
-   #circle{
-   	width:200px;
-   	height:200px;
-   	border-radius:100px;
-   	background-color: red;
-   }
-   .break{
-   	clear: both;
-   }
-   </style>
-   
+   	<link rel="stylesheet" type="text/css" href="style.css"/>  
 </head>
 
 <body>
-	
-    <div id ="circle"></div>
+	<h1>Test your reactions !!</h1>
+	<p>Click on the boxes and circles as quickly as possible.</p>
+	<p class = "bold"> Your time : <span id ="time">0</span>s</p>
+	<div id="box"></div>
 
-    <script type="text/javascript">
-
-    document.getElementById("circle").onclick=function(){
-   		document.getElementById("circle").style.display="none";
-    }
-
-    </script>
-
+	<script type="text/javascript" src ="script.js"></script>
 </body>
 </html>
