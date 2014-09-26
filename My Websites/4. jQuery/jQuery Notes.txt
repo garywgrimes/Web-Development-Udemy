@@ -238,6 +238,7 @@ $.get("test.html",function(data){
 })
 </script>
 
+Here data will contain the content of the test.html file to the varible called data. We can then manipulate the data variable.
 OR
 
 <script>
@@ -255,6 +256,7 @@ $.ajax({
 	$("h1").html(data);
 })
 </script>
+This will change the header h1 to the data got from the ajax data i.e, test.html
 
 <script>
 $.ajax({
@@ -263,3 +265,147 @@ $.ajax({
 	$("h1").append(data);
 })
 </script>
+
+The benefit of using the ajax is that we can alert the user if the internet goes down. ajax function is preferred to the get function.
+
+
+
+Regular Expressions:
+It is pattern of characters which you can then use to see if a particular string of a particular format. We can use this to see
+if a string contains certain word or a  certain word is in particular format say, email format.
+
+<script>
+    var regex = /great/;
+    var string ="Regex is great !";
+    var result=string.match(regex);
+    alert(result);
+</script>
+
+If true it will return great else return null. This match function is case sensitive and will not recognize the different case
+letters. To make it case insensitive, we need to put the i flag as:
+   			 var regex = /great/i;
+
+
+
+
+  <script>
+    var regex = /e/g;
+    var string ="Regex is great !";
+    var result=string.match(regex);
+    alert(result);
+</script>
+Here g means global and it will look for every instance of e. This will return kinds array of e,e,e
+
+
+
+Form validation:
+
+We can use the label tag in the forms which has a for element that helps define which input that element is for.
+Label is attached to the particular input element.
+
+<!doctype html>
+<html>
+<head>
+    <title>Form Validation</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+    <style>
+#wrapper{
+    width: 600px;
+    height: 50px;
+    margin: 0 auto;
+    font-family: helvetica;
+    font-size: 1.2em;
+  }
+
+   input{
+    width: 300px;
+    height: 28px;
+    padding: 7px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    border: 1px solid blue;
+    margin-bottom: 10px;
+   }
+   label{
+    width: 200px;
+    float: left;
+    padding-top: 10px;
+   }
+   #submitButton{
+    height: 45px;
+    width: 100px;
+    margin-left: 200px;
+   }
+   #error{
+    color: red;
+    width: 600px;
+    height: 50px;
+    margin-bottom: 30px;
+    
+   }
+ 
+  </style>
+</head>
+
+<body>
+    <div id="error"></div>
+<div id= "wrapper">
+
+<form id="validationForm">
+
+    <label for="email">Email</label>
+    <input name="email" id="email"/> <!--This name label will hold the values of the entered data-->
+
+    <label for="telephone">Telephone</label>
+    <input name="phone" id="phone"/>
+
+    <label for="pass">Password</label>
+    <input name="pass" type="password" id ="pass"/>
+
+    <label for="confirm ">Confirm Password</label>
+    <input name="pass" type ="password" id="con"/>
+
+    <input id="submitButton" type="submit" value= "Submit"/>
+
+</form>
+</div>
+
+<script>
+    $("#validationForm").submit(function(event){
+        var errorMessage = "";
+        <!--This preventDefault will stop the form being submitted-->
+        event.preventDefault();
+       
+        function isValidEmailAddress(emailAddress) {
+            var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+            return pattern.test(emailAddress);
+        };
+
+        if(!isValidEmailAddress($("#email").val())){
+            errorMessage="<br/>Please enter a valid email address";
+        }
+
+        if(!$.isNumeric($("#phone").val())){
+            errorMessage+="<br/>Please enter a valid telephone number";
+        }
+
+        if($("#pass").val()!=$("#con").val()){
+            errorMessage+="<br/>Passwords do not match";
+        }
+        if(errorMessage==""){
+            alert("success");
+        }
+        else{
+        $("#error").html(errorMessage);
+        }
+    });
+ </script>
+</body>
+</html>
+
+Although there are pluginns available for password validation, it is good to know how to make one on your own.
