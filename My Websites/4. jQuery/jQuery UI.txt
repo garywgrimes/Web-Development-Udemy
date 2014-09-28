@@ -1,0 +1,406 @@
+Links:
+oscarotero.com/jquery
+
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>  is the link
+for the jQueryui. Put this link in the head. Also don't forget to add the jQuery link as well as
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> in the head as well.
+
+
+To find the google link just google jQuery ui cdn. CDN stands for content delivery network
+
+http://api.jqueryui.com/     This the best place the learn about the working of all the features of the jQueryui.
+
+Draggables:
+<!doctype html>
+<html>
+<head>
+    <title>Example Domain</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>  
+</head>
+<style>
+#square{
+    width: 200px;
+    height: 200px;
+    background-color:red;
+}
+</style>
+<body>
+    <div id="square"></div>
+<script>
+    $("#square").resizable();
+</script>
+</body>
+</html>
+
+
+Resizables:
+For the resizable to work we need to also link the CSS file as 
+ <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" /> in the head.
+
+$("#resizables").resizable();
+We also do both draggable and resizable as  $("#resizables").resizable().draggable();
+
+Droppables:
+<!doctype html>
+<html>
+<head>
+    <title>Example Domain</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>  
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+</head>
+<style>
+#square{
+    width: 200px;
+    height: 200px;
+    background-color:green;
+}
+#resizables{
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+#targert{
+    width: 400px;
+    height: 400px;
+    background-color: yellow;
+}
+</style>
+<body>
+    <div id="square">
+        <p>Drag me around!!</p></div>
+        <div id="resizables">Resize me</div>
+        <div id="targert"> </div>
+
+<script>
+    $("#square").draggable();
+    $("#resizables").resizable().draggable();
+    $("#targert").droppable({
+        drop: function(ui,event){
+            $("#targert").css("background-color","red");
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+Accordion and sortables:
+
+Accordion is useful when you have large amount of text to show in the webpage and it'll help to manage it.
+<!doctype html>
+<html>
+<head>
+    <title>Example Domain</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>  
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+</head>
+
+<body>
+    <div id="accordion">
+
+   <h3>Title 1</h3>
+   <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+   </div>
+
+    <h3>Title 2</h3>
+   <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+   </div>
+
+    <h3>Title 3</h3>
+   <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+   </div>
+
+    <h3>Title 4</h3>
+   <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+   </div>
+    </div>
+this is a test
+<script>
+   $("#accordion").accordion();
+</script>
+</body>
+</html>
+
+<!doctype html>
+<html>
+<head>
+    <title>Example Domain</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>  
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+</head>
+
+<body>
+    <ul>
+        <li>Pizza</li>
+        <li>Cheese</li>
+        <li>burger</li>
+        <li>tomatoes</li>
+        <li>chocolates</li>
+    </ul>   
+<script>
+  $("ul").sortable();
+</script>
+</body>
+</html>
+This will allow graphical sorting of the lists.
+
+
+CodePlayer Project:
+<!--This box sizing will include the border in the width of the box and the padding. The problem was-->
+    <!--the padding added to the already 100% width element-->
+
+.codeContainer textarea{
+    width: 100%;
+    height: 100%;
+    border:none;
+    border-right: 1px solid grey;
+    font-family: monotype;
+    font-size: 90%;
+    padding:5px 0 0 5px;
+    
+    box-sizing : border-box;
+}
+
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Kushal JS Bin</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>  
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+</head>
+<style type="text/css">
+#wrapper{
+
+}
+body{
+    margin:0;
+    padding: 0;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+}
+
+#menubar{
+    width: 100%;
+    height:40px;
+    background-color: #e0e0e0;
+    border-bottom: 1px solid grey;
+}
+#logo{
+    padding: 5px 0 0 15px;
+    font-weight: bold;
+    font-size: 120%;
+    float:left;
+}
+#buttonDiv{
+    float: right;
+    padding: 5px 10px 0 0;
+}
+#run{
+    font-size: 1.2em;
+}
+#toggles{
+    width: 176px;
+    margin: 0 auto;
+    list-style: none;
+    border: 1px solid grey;
+    border-radius: 3px;
+    height: 27px;
+    padding: 0;
+    position: relative;
+    top:5px;
+}
+#toggles li{
+    float: left;
+    border-right: 1px solid grey;
+    padding: 4px;
+
+}
+.clear{
+    clear: both;
+}
+.codeContainer{
+    
+    height: 100%;
+    width: 50%;
+    float: left;
+    position: relative;
+}
+.codeContainer textarea{
+    width: 100%;
+    height: 100%;
+    border:none;
+    border-right: 1px solid grey;
+    font-family: monotype;
+    font-size: 90%;
+    padding:5px 0 0 5px;
+    
+    box-sizing : border-box;
+    //This will solve the issues with overlapping caused by padding. It includes the boder into the width of the box and padding as well.
+    //This avoids adding the padding to the width of already 100% wide element.
+}
+.codeLabel{
+    position: absolute;
+    right: 10px;
+    top: 10pxl
+}
+#CSSContainer, #JSContainer{
+    display: none;
+}
+iframe{
+    height: 100%;
+    position: relative;
+    left: 20px;
+    border: none;
+}
+.selected{
+    background-color: grey;
+}
+
+</style>
+
+
+<body>
+<div id="wrapper">
+    <div id ="menubar">
+        <div id="logo">
+            My JS bin
+        </div>
+        <div id="buttonDiv">
+            <button id="run">Run</button>
+        </div>
+        <ul id= "toggles">
+            <li class= "toggle selected">HTML</li>
+            <li class= "toggle">CSS</li>
+            <li class= "toggle">JS</li>
+            <li class= "toggle selected" style= "border:none">Result</li>
+
+        </ul>   
+    </div>   
+
+<div class="clear"></div>
+
+    <div class="codeContainer" id="HTMLContainer">
+        <div class="codeLabel"> HTML</div>
+    <textarea id="htmlCode">Example code</textarea>
+
+    </div>
+
+</div>
+
+  <div class="codeContainer" id="CSSContainer">
+        <div class="codeLabel"> CSS</div>
+    <textarea id="cssCode">html{background-color:blue}</textarea>
+
+    </div>
+
+</div>
+
+  <div class="codeContainer" id="JSContainer">
+        <div class="codeLabel"> JS</div>
+    <textarea id="jsCode">alert("done");</textarea>
+
+    </div>
+
+</div>
+
+ <div class="codeContainer" id="resultContainer">
+        <div class="codeLabel"> Result</div>
+    <iframe id="resultframe"></iframe>
+    </div>
+
+</div>
+
+  
+<script>
+
+    var windowHeight = $(window).height();
+    var menuBarHeight = $("#menubar").height();
+    var codeContainerHeight = windowHeight-menuBarHeight;
+    $(".codeContainer").height(codeContainerHeight+"px");
+    // this the accurate way of finding the remaining height of the window
+
+    $(".toggle").click(function(){
+        // this toggle is selection between the tabs on the top of the screen
+        
+        $(this).toggleClass("selected");
+        // here this is pointing  to the selected tab like html, css , js or result and what is doing is toggling the 
+        //class with the selected tag class and making it grey.
+        var activeDiv =$(this).html();
+        // this will return the html of the selected div and all the divs are HTML, CSS, JS and Result
+
+        $("#"+activeDiv+"Container").toggle();
+        // this then add the html content from the above code to the word container and selects either HTMLContainer and so on
+        // and the toggle will make it appear and disapper. Once it appears and disappers we will then determine the size of the container.
+        var showingDivs=$(".codeContainer").filter(function(){
+            // this filter will do like loop through the .codeContainer and filters as the function says.
+            return($(this).css("display")!= "none");
+        }).length;
+       var widthvalue = 100/showingDivs-5;
+       $(".codeContainer").width(widthvalue+"%");
+
+    });
+
+    $("#run").click(function(){
+        $("iframe").contents().find("html").html('<style>'+ $("#cssCode").val()+'</style>'+$("#htmlCode").val());
+        // this is sending the CSS files as style tag and the html codes
+
+        document.getElementById("resultframe").contentWindow.eval($("#jsCode").val());
+        //Don't use the eval function, this might be the potential loophole to your files
+
+    });
+</script>
+</body>
+</html>
