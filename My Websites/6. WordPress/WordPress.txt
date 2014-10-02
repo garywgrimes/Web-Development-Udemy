@@ -1,0 +1,11 @@
+WordPress is a Content  Mangement System (CMS). It is a platform for creating and editing
+website. It is built of PHP and MySQL.
+
+I went to cpanel.ecowebhosting.co.uk and clicked on to wordpress and installed it. created an account pkushal
+http://79.170.40.229/kushal.com/wordpress/
+
+themeforest.net for paid themes
+
+woocommerce is a good pluginn for ecommerce
+
+http://79.170.40.229/kushal.com/wordpress/wp-login.php?loggedout=true

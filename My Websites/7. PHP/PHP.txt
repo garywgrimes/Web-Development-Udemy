@@ -1,0 +1,380 @@
+HTML. CSS, JavaScript, jQuery are the front end part of a website. It has content, layout, styles and also
+interact with the user. This is the front end.
+
+Back end where business logic happens in the server side. Python, Node.js, ASP.Net in C#, C++, or Visual Basic, Ruby are some other server side programming language.
+
+We need a server to run php.
+
+Every thing in php has to be inside the <?php ?> tag.
+A file say, index.php doesn't have to have php in it, it can just have the 
+plain HTML and it will be fine.
+
+Displaying Error Message:
+In HTML we could see the error message in the console of the webbrowser. In php we do everything in server we need something else.
+
+We create a file called php.ini in the server and write the following in hte file 
+display_errors = on
+display_startup_errors = on
+and save it.
+Now if we have any error in the code we can see it on the webpage itself.
+But turn off the errors off during the production, only use it in the development.
+
+PHP variables:
+variables in php always start with string $.
+<?php
+
+	$test="I am a varible";
+	echo $test;
+?>
+
+echo "</br>"
+echo "</br></br>"
+These will give line break.
+
+<?php
+
+	$test="I am a varible";
+	$escapehar1="I \"am a varible";
+	$number=56;
+	echo $number/2;
+	echo $test;
+	echo $escapehar1;
+	echo $test.$escapehar1;
+?>
+Use dots(.) to concatenate the strings.
+
+We cannot have a number at the beginning of the variable name as
+$3variable.
+
+$name="Kushal";
+echo "My name is $name"; is allowed and is same as
+echo "My name is". $name;
+
+$name="kushal";
+	$a="name";
+	echo $$a;
+This will display kushal.
+
+
+Arrays:
+<?php
+
+$myArray = array("pizza","chocolate", "coffee");
+print_r($myArray);
+echo $myArray[2];
+echo "</br>";
+$anotherarray[0]="Kushal";
+$anotherarray[1]="Pizza";
+print_r($anotherarray);
+?>
+
+We can define the keys as well as:
+$thirdarray= array(
+	"France"=>"French",
+	"Nepal"=>"Nepali",
+	"Germany"=>"German");
+print_r($thirdarray);
+
+
+$anotherarray[]="salad"; this will add an element to the end of an array called
+anotherarray.
+
+unset($thirdarray["Germany"]); will remove the element in the index called
+Germany from the array called thirdarray.
+
+This unset command can be used for array as well as variable.
+$name="Kushal";
+unset($name);
+
+
+If statements:
+
+<?php
+$number=1;
+if ($number==3) {
+	echo "true";
+}
+else{
+	echo "false";
+}
+?>
+
+We can do like:
+if($var1!=var2){
+	//do something
+}
+or
+if(!($var1==$var2)){
+	//do something
+}
+Those two operations are same.
+
+if($var1==1 AND $var2==2){
+	//Use the letter AND for the AND operations.
+}
+Similarly there is OR operator as OR.
+
+
+For and ForEach loops:
+
+<?php
+	for($i =1;$i<10;$i++){
+		echo $i;
+		echo "</br>";
+		//
+		echo $i."</br>";
+	}
+?>
+
+
+
+
+<?php
+	$arr=array("one", "two", "three", "four");
+
+	#contary to print_r($myArray);
+	foreach ($arr as $key => $value) {
+		echo "Key: $key    Value: $value"."</br>";
+	}
+?>
+
+<?php
+$thirdarray= array(
+	"France"=>"French",
+	"Nepal"=>"Nepali",
+	"Germany"=>"German");
+foreach ($thirdarray as $key => $value) {
+		echo "Key: $key    Value: $value"."</br>";
+	}
+?>
+
+Multiple line comment:
+/*
+
+*/
+Single line comment #
+
+
+While loops:
+
+<?php
+	$i=1;
+	while ($i<20) {
+		echo $i."</br>";
+		$i++;
+	}
+?>
+
+<?php
+	$i=0;
+	$arr=array("one", "two", "three", "four");
+	#this loop will go until there is something in the array
+	while ($arr[$i]) {
+		echo $arr[$i]."</br>";
+		$i++;
+	}
+?>
+
+
+Sending Email:
+<body>
+	<div>
+			<?php
+			$emailTo="kushal.pdn@gmail.com";
+			$subject="Test email from PHP";
+			$body="PHP is fun kushal";
+			$headers="From: pkushal@uab.edu";
+
+			if (mail($emailTo, $subject, $body, $headers)){
+				echo "Mail sent successfully";
+			}
+			else{
+				echo "Mail failed";
+			}
+			?>
+	</div>
+</body>
+
+The echo(mail($emailTo, $subject, $body, $headers)) will return 1 if the
+mail is sent else 0.
+Just put these line of code in te body of html and it works.
+
+
+
+
+Get Variables:
+This get varibles will not work in temporary domain names while the post 
+variable will work. We use post variables more in production.
+
+
+<?php
+	$_GET 
+?>
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Email from PHP</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
+</head>
+
+<body>
+	<?php
+
+		if($_GET ["submit"]){
+			if ($_GET["name"]){
+				echo "Your name is ".$_GET['name']. " Thank you";
+			}
+			else{
+				echo "Please enter your name";
+			}
+		}
+	?>
+
+	<div>
+		<form>
+			<label for="name"></label>
+		<input type= "text" name="name">
+		<input type= "submit" name="submit" value="Submit your Name">
+		</form>
+	</div>
+
+</body>
+</html>
+
+
+
+
+POST Variables:
+Getting the values without showing in the URL.
+
+To define a post method, we just need to do like
+	<form method="post">
+		# Code here ...
+	</form>	
+Everything else is same.
+
+<body>
+	<div>
+	<?php
+	print_r($_POST);
+
+		if($_GET["submit"]){
+			if ($_GET["name"]){
+				echo "Your name is ".$_GET['name'];
+			}
+			else{
+				echo "Please enter your name";
+			}
+		}
+	?>
+	<form method="post">
+		<label for="name">Name</label>
+		<input type= "text" name="name"/>
+		<input type= "submit" name="submit" value="Submit your Name"/>
+	</form>
+	</div>
+</body>
+
+
+
+<!doctype html>
+<html>
+<head>
+    <title>Email from PHP</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
+</head>
+<body>
+	<div>
+
+	<?php
+		$arrnames = array("Kushal", "Pradhan", "KP");
+	
+		if($_POST["submit"]){
+			if ($_POST["name"]){
+				foreach ($arrnames as $name) {
+					if($name==$_POST["name"]){
+
+						echo "Hello " .$name;
+						$knowyou=1;
+					}
+				}
+			if(!$knowyou) echo "who the hell are you ".$_POST['name'];
+			}
+			else{
+				echo "Please enter your name";
+			}
+		}
+	?>
+	<form method="post">
+		<label for="name">Name</label>
+			<input type= "text" name="name"/>
+			<input type= "submit" name="submit" value="Submit your Name"/>
+	</form>
+	</div>
+</body>
+</html>
+
+
+Validation:
+
+It is good to do the validation in the server side because if we do the validation in the client side via,
+javascript then it cannot be relied upon as the user may have javascript turned off or something.
+
+filter_var:
+http://php.net/manual/en/filter.filters.php
+http://php.net/manual/en/filter.filters.validate.php
+
+Scraping:
+Taking the content from URL and extracting the information we need.
+
+http://www.weather-forecast.com
+
+file_get_contents("http://www.weather-forecast.com/locations/Kathmandu/forecasts/latest");
+this file_get_content command will get the contents of the file.
+
+
+preg_match(pattern, subject)
+this is for the regex in php
+
+<?php 
+	$contents= file_get_contents("http://www.weather-forecast.com/locations/Kathmandu/forecasts/latest");
+	preg_match("/3 Day Weather Forecast Summary:/i", $contents,$matches);
+	print_r($matches);
+
+ ?>
+
+ This will give: Array ( [0] => 3 Day Weather Forecast Summary: )
+
+ <?php 
+	$contents= file_get_contents("http://www.weather-forecast.com/locations/Kathmandu/forecasts/latest");
+	preg_match("/3 Day (.*?) Summary:/i", $contents,$matches);
+	print_r($matches);
+
+ ?>
+
+ here the (.*?) will give the content that is in between 3 Day and Summary: and also puts it in the array
+ Array ( [0] => 3 Day Weather Forecast Summary: [1] => Weather Forecast ) is the output
+ We need to put /s instead of /i for multiline scanning.
+
+ <?php 
+	$contents= file_get_contents("http://www.weather-forecast.com/locations/Kathmandu/forecasts/latest");
+
+	preg_match('/3 Day Weather Forecast (.*?)<\/span>/s', $contents, $matches);
+
+	print_r($matches);
+
+ ?>
+
+ 	str_replace(search, replace, subject)
+ 	This is a handy code to manipulate the strings
+ 	$city= str_replace(" ", "", $city); will get rid of the space from the variable city

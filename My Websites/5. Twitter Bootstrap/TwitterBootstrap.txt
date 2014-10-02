@@ -1,3 +1,5 @@
+www.w3resource.com is a very good resource for web application development
+
 Bootstrap and Responsive Design:
 
 getbootstrap.com
