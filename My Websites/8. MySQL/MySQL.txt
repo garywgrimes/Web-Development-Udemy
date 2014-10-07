@@ -1,0 +1,245 @@
+Went to the cpanel and clicked on the MySQL icon, created a username and password and then clicked manage on it.
+
+User name: kushaldb
+PW: hbyWe!.NC
+
+
+Generated user name and password:
+UN: cl21-a-wordp-9cj 	
+PW: tq2EV^cbr
+Server: 79.170.40.229 * 
+
+Then we have phpMyAdmin program (admin program written in php) that allows us to edit the database.
+Database is pretty much collection of tables.
+
+Click on the name of the database that you just created. It should be pretty much empty. Then create tables, should have table name and can also enter the number of columns that you want to have. Be sure to hava atleast one id and make it primary and check the AI(Auto increment) if you need.
+Then click on the name of the table you created and click on the insert button the add values.
+The auto generated query will look like this:
+
+INSERT INTO `cl21-a-wordp-9cj`.`Users` (`Name`, `Email`, `Password`, `id`) VALUES ('Kushal', 'kushal.pdn@gmail.com', 'test', NULL);
+
+By clicking on the Browse tab, you should be able to see the data you just entered.
+
+
+
+
+Connecting to a database:
+Connected to the server using the fireftp and created a folder called MySQL (inside the public_html) and inside that created a file called index.php
+
+
+<?php 
+	mysqli_connect("localhost", "cl21-a-wordp-9cj", "tq2EV^cbr","cl21-a-wordp-9cj");
+	echo "Working";
+ ?>
+
+ This piece of code helps to connect to the database. 
+ Localhost: I can put IP address of the server as well but, since the database is in the same server as every thing else, we can say localhost. The good thing about the local host is that even though the IP address change, it shouldn't be a problem.
+
+ cl21-a-wordp-9cj: this is the user name
+ tq2EV^cbr: this is the password
+ cl21-a-wordp-9cj: this is the name of the database schema.
+
+ If the connection is established, then it should display the echo command's string. Insted of just displaying the string on the echo command, I can do like
+ echo mysqli_connect_error();
+ This will display the error message if any. But not a good idea to display the error message publicly, so we can do like:
+
+ if(echo mqsqli_connect_error()){
+ echo "Couldn't connect to the database kushal babu"
+ }
+
+
+ Retriving data from database:
+ When we couldn't connect to the database, then it is good to stop all the scripts beyond that and the way to do it is:
+
+ <?php
+ mysqli_connect("localhost", "cl21-a-wordp-9cj", "tq2EV^cbr","cl21-a-wordp-9cj");
+ if(mysqli_connect_error()){
+ die("Couldn't connect to the database");
+ }
+echo "hello";
+ ?>
+ Here hello will not be displayed.
+
+
+ <?php
+ $link = mysqli_connect("localhost", "cl21-a-wordp-9cj", "tq2EV^cbr","cl21-a-wordp-9cj");
+ 	if(mysqli_connect_error()){
+ 	die("Couldn't connect to the database");
+ 	}
+	
+	$query = "SELECT * FROM Users";
+	if(mysqli_query($link, $query)){
+		echo "It worked";
+	}
+	else{
+		echo "It failed";
+	}
+
+ ?>
+
+  <?php
+	$link = mysqli_connect("localhost", "cl21-a-wordp-9cj", "tq2EV^cbr","cl21-a-wordp-9cj");
+ 	if(mysqli_connect_error()){
+ 	die("Couldn't connect to the database");
+ 	}
+	
+	$query = "SELECT * FROM Users";
+	if($result=mysqli_query($link, $query)){ // this will return boolean; the command is mysqli_query(linkdata, querydata)
+		$row=mysqli_fetch_array($result);    // this will contain a array of data from the query ($result); the command is 												mysqli_fetch_array
+		print_r($row);						 // this will just display the result
+	}
+	else{
+		echo "It failed";
+	}
+ ?>
+
+
+
+
+ Adding data to a database:
+  <?php
+ $link = mysqli_connect("localhost", "cl21-a-wordp-9cj", "tq2EV^cbr","cl21-a-wordp-9cj");
+ 	if(mysqli_connect_error()){
+ 	die("Couldn't connect to the database");
+ 	}
+	
+	$query = "SELECT * FROM Users";
+	if($result=mysqli_query($link, $query)){
+		$row=mysqli_fetch_array($result);
+		print_r($row);
+	}
+	else{
+		echo "It failed";
+	}
+
+	$query="INSERT INTO `Users` (`name`, `email`, `password`) VALUES ('Rob Percival', 'rob@test.com','hellothere')";
+	mysqli_query($link,$query); // this command is to run the query command.
+ ?>
+
+
+
+
+Updating the data that's already there:
+$query ="UPDATE `Users` SET `email` ='update@gmail.com' WHERE `id`=3 LIMIT 1";  //limit will limit the number of changes to 1
+mysqli_query($link,$query);
+
+
+
+
+
+Looping through the data:
+
+ <?php
+ $link = mysqli_connect("localhost", "cl21-a-wordp-9cj", "tq2EV^cbr","cl21-a-wordp-9cj");
+ 	if(mysqli_connect_error()){
+ 	die("Couldn't connect to the database");
+ 	}
+	
+	$query = "SELECT * FROM Users";
+	if($result=mysqli_query($link, $query)){
+		while($row=mysqli_fetch_array($result)){
+			print_r($row);
+		}
+	}
+	else{
+		echo "It failed";
+	}
+?>
+If you see the source(Ctrl + U), it will be easy to look up. It will be somewhat like:
+
+ Array
+(
+    [0] => Kushal
+    [Name] => Kushal
+    [1] => kushal.pdn@gmail.com
+    [Email] => kushal.pdn@gmail.com
+    [2] => test
+    [Password] => test
+    [3] => 1
+    [id] => 1
+)
+
+
+SO there are two ways to access the data. I can use the column number 0 or the id called Name to access the entry in the first column.
+
+Some queries:
+$query = "SELECT * FROM Users WHERE `name`='Kushal'";
+$query = "SELECT * FROM Users WHERE `email` LIKE '%m%'"; this will list out all the user who has m anywhere in their email.
+														  The % on the either side of m, says it can be anywhere.
+
+$query = "SELECT * FROM Users WHERE `name` LIKE 'k%'"; this will give all the users whose name start with k. Here k is not case 													    sensitive
+
+$query = "SELECT * FROM Users WHERE `name` LIKE '%l'"; names ending with l
+
+$query = "SELECT * FROM Users WHERE `id`>3"; where id is greater than 3
+
+$query = "SELECT * FROM Users WHERE `id`>3" AND `password`!=''"; This will return all the users whose id is greater than 3 and 																		has a password.
+
+
+$query = "SELECT * FROM Users WHERE `id`>3" OR `password`!=''";
+$query ="UPDATE `Users` SET `name` ='Ian O\'Neil' WHERE `id`=2 LIMIT 1"; // use of escape character
+
+$query = "SELECT `name` FROM `Users`;  This better than SELECT * FROM Users because we can only query what we need.
+
+If I do like: 
+
+if($result=mysqli_query($link, $query)){
+		echo mysqli_num_rows($result);
+		...
+
+
+		then this mysqli_num_rows() will give the number of rows that satifies the query.
+
+
+$query ="UPDATE `Users` SET `name` ='Ian O\'Neil' WHERE `id`=2 LIMIT 1";
+
+
+	$name ="Ian O'Neil";
+	$query = "SELECT `name` FROM `Users` WHERE `name`='".$name."'"
+	Problem here is when it hits the '  in the $name its gonna stop.
+
+Solution: $query = "SELECT `name` FROM `Users` WHERE `name`='".mysqli_real_escape_string($link, $name)."'";
+
+
+
+
+Session variables:
+session_start(); this is go before any html codes or anything
+
+ <?php
+	session_start();
+	$_SESSION['loginid']=1;
+	echo $_SESSION['loginid'];
+ ?>
+ then load the page and then delete the $_SESSION['loginid']=1; from the above code and reload the browser, 
+ the output will still be there. That variable will stay active unless the user closes all the windows in the browser which are connected to that site.
+
+ Sessions are server specific. So, we can access the session variables from any page which has the session_start() in the php code. This means, if I create a new hello.php file and write the code below:
+
+ <?php
+ 	session_start();
+ 	print_r ($_SESSION);
+ ?>
+ It will give me the value of 1 from the session variable from another file called index.php
+
+ Session variables are good for the logged in session where all the data are removed after the user logs out or something.
+
+
+
+
+Cookies:
+If the user wants to stay logged in longer than the browser sessions.
+Cookies need to be set before the html code.
+ <?php
+	setcookie("id", "1234", time()+60*60*24);
+ ?>
+
+ 	id= key for the cookie
+ 	1234= value for the cookie
+ 	time(): time in seconds right now
+ 	60*60*24 is the number of seconds in seconds which is added to the current time.
+
+Similar to session it can be accessed from other webpage and this time we don't need any session start or cookie start. Cookies are there by default.
+
+Now to get rid of the cookie we can do like:
+	setcookie("id","",time()-3600); here to delete the cookie, we don't need to set the value and we can leave it blank and set the time to time in past by doing something like time()-3600; that is cookie is set to expire an hour in past.
