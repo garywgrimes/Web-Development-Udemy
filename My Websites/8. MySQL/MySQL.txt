@@ -243,3 +243,205 @@ Similar to session it can be accessed from other webpage and this time we don't 
 
 Now to get rid of the cookie we can do like:
 	setcookie("id","",time()-3600); here to delete the cookie, we don't need to set the value and we can leave it blank and set the time to time in past by doing something like time()-3600; that is cookie is set to expire an hour in past.
+
+
+
+
+
+Storing Password Securely:
+
+One way of storing password securely is using hash. It is achieved by using the command md5.
+
+<?php
+echo md5("HEllo#there");
+?>
+
+It will be displayed as d8578edf8458ce06fbc5bb76a58c5ca4. We can store d8578edf8458ce06fbc5bb76a58c5ca4 in our database.
+Hackers use rainbow tables to decode the password. It contains the collection of commonly used password which are encoded using the md5 encoding.
+Example website: crackstation.net can easily decode d8578edf8458ce06fbc5bb76a58c5ca4 as qwerty. Not very strong.
+
+
+	using salt:
+<?php
+$salt ="176dv7b7bndnd3dn83n98";
+echo md5($salt."qwerty");
+?>
+
+here $salt contains any random combination of numbers and letters.
+
+
+Using different salt every time for each user:
+
+<?php
+echo md5(md5($row['id'])."qwerty");
+?>
+
+here we are taking the id of the user and hashing that using md5 and appending that to the actual password and hashing it again.
+This is the most secure way to store the password and always use this method. Here the salt is gonna be different every time.
+Crackstation.net only works for "unsalted" hashes.
+
+
+
+
+
+
+
+
+
+
+
+
+Secret Diary:
+People can make account in the website and keep a secret diary that only the user can have access to.
+
+First we will make a simple login system.
+
+SQL injection: Use mysqli_real_escape_string when ever the user has to enter some data and you use that data to connect to and query the database.
+
+
+Part 1 to create a user and insert it in the database:
+
+<?php
+	if ($_POST['submit']){
+
+	if(!$_POST['email']) $error.="<br />Please enter your email.";
+	else if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) $error.="<br />Please enter a valid email.";
+
+	if(!$_POST['password']) $error.="<br />Please enter your password.";
+			else {
+					if (strlen($_POST['password'])<8) $error.="<br />Please enter password with atleast 8 characters.";
+					if (!preg_match('`[A-Z]`', $_POST['password'])) $error.="<br />Please include atleast one capital letter.";
+				}
+	if($error) echo "There were errors in your sign up details: ".$error;
+	else{
+			$link = mysqli_connect("localhost", "cl21-secertdb", "sGb7b7^Jn","cl21-secertdb");
+		 		if(mysqli_connect_error()){
+			 		die("Couldn't connect to the database");
+			 		}
+				$query = "SELECT `email` FROM `users` WHERE `email`='".mysqli_real_escape_string($link, $_POST['email'])."'";
+				$result=mysqli_query($link, $query);
+				$results=mysqli_num_rows($result);
+
+				if($results)echo "The email has already in use. Do you want to login?";
+				else{
+					$hashedvalue= md5(md5($_POST['email']).$_POST['password']);
+					$query="INSERT INTO `users` (`email`,`password`) VALUES ('".mysqli_real_escape_string($link, $_POST['email'])."','$hashedvalue')";
+					mysqli_query($link,$query);
+					echo "<br/>You have been signed up";
+				}
+													
+			}
+			
+}
+
+?>
+
+<form  method="post">
+	<input type="email" name="email" id ="email"/>
+	<input type="password" name="password"/>
+	<input type="submit" name="submit" value="Sign Up"/>
+</form>
+
+
+__________________________________________________________________________
+
+Part 2 adding on to the part 1:
+
+mysqli_insert_id in the session will give the id of the most recently added user.
+
+addslashes will handle all the issues with quotes and backslasahes if any.
+
+<?php
+	session_start();
+	$link = mysqli_connect("localhost", "cl21-secertdb", "sGb7b7^Jn","cl21-secertdb");
+	if ($_POST['submit']=="Sign Up"){
+
+	if(!$_POST['email']) $error.="<br />Please enter your email.";
+	else if (!filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)) $error.="<br />Please enter a valid email.";
+
+	if(!$_POST['password']) $error.="<br />Please enter your password.";
+			else {
+					if (strlen($_POST['password'])<8) $error.="<br />Please enter password with atleast 8 characters.";
+					if (!preg_match('`[A-Z]`', $_POST['password'])) $error.="<br />Please include atleast one capital letter.";
+				}
+	if($error) echo "There were errors in your sign up details: ".$error;
+	else{
+		 		if(mysqli_connect_error()){
+			 		die("Couldn't connect to the database");
+			 		}
+				$query = "SELECT `email` FROM `users` WHERE `email`='".mysqli_real_escape_string($link, $_POST['email'])."'";
+				$result=mysqli_query($link, $query);
+				$results=mysqli_num_rows($result);
+
+				if($results)echo "The email has already in use. Do you want to login?";
+				else{
+					$hashedvalue= md5(md5($_POST['email']).$_POST['password']);
+					$query="INSERT INTO `users` (`email`,`password`) VALUES ('".mysqli_real_escape_string($link, $_POST['email'])."','$hashedvalue')";
+					mysqli_query($link,$query);
+					echo "<br/>You have been signed up";
+
+					$_SESSION['id']=mysqli_insert_id($link);
+					print_r($_SESSION);
+					//Redirect to the logged in page.
+				}
+													
+			}
+			
+		}
+		if ($_POST['submit']=="Log In"){
+			$query = "SELECT * FROM users WHERE email ='".mysqli_real_escape_string($link, $_POST['loginemail'])."' AND password='".md5(md5($_POST['loginemail']).$_POST['loginpassword'])."' LIMIT 1";
+			$result=mysqli_query($link,$query);
+			$row=mysqli_fetch_array($result);
+			if($row){
+				$_SESSION['id']=$row['id'];
+				print_r($_SESSION);
+				//redirect to the logged in page
+			}
+			else{
+				echo "Couldn't find the user with this email and password. Please try again";
+			}
+		}
+
+?>
+
+<form  method="post">
+	<input type="email" name="email" id ="email" value="<?php echo addslashes($_POST['email']);?>"/>
+	<input type="password" name="password" value="<?php echo addslashes($_POST['password']);?>"/>
+	<input type="submit" name="submit" value="Sign Up"/>
+</form>
+
+
+<form  method="post">
+	<input type="email" name="loginemail" id ="loginemail" value="<?php echo addslashes($_POST['email']);?>"/>
+	<input type="password" name="loginpassword" value="<?php echo addslashes($_POST['password']);?>"/>
+	<input type="submit" name="submit" value="Log In"/>
+</form>
+
+
+
+How to link another file in php:
+
+include("connection.php");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

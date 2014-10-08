@@ -1,0 +1,11 @@
+When to use Javascript and when to use PHP?
+
+
+JavaScript is a client side scripting language while PHP is a server side scripting language.
+
+You need PHP when you need to communicate to the server, you cannot do this using the javascript. But now a days you can do it by
+using NOde.js.
+
+Good thing about the javascript is handling the events. It can respond to the mouse click events like double click and so on which cannot be done by the php. The downside of javascript is that user can turn off the javascript and it will not work as you expected.
+
+It is always good to use php when you have to connect to the database and do the robust and secure scripting.
