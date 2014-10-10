@@ -45,7 +45,7 @@ text-align: center;
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 center">
 
-					<div class= "weather">
+				
 						<h1 class="center">Weather Predictor</h1>
 					<p class="lead center">Enter the city for the weather forecast</p>
 
@@ -59,8 +59,9 @@ text-align: center;
 						</div>
 
 					</form>
-					</div>
-
+				<div id="success" class="alert alert-success">Success!</div>
+				<div id="fail" class="alert alert-danger"> Couldn't find the address.Please try again later.</div>
+				<div id="noCity" class="alert alert-danger">Please enter an address.</div>
 				</div>
 
 			</div>

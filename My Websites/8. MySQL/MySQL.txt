@@ -424,6 +424,16 @@ How to link another file in php:
 include("connection.php");
 
 
+$("textarea").keyup(function(){
+      alert("changed");
+  });
+
+  This piece of javascript will sense when the user enters something in the textfield. The function used is keyup
+Instead of alert we use
+$.post("updatediary.php",{diary: $("textarea").val()});
+which will post the text from textarea as diary to the updatediary.php file and that file will post it to the database.
+We have used the post method of the javascript instead of ajax for simplicity. We can use ajax here. This is kinda ajax jquery post function.
+
 
 
 

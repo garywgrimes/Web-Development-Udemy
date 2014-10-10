@@ -8,4 +8,40 @@ using NOde.js.
 
 Good thing about the javascript is handling the events. It can respond to the mouse click events like double click and so on which cannot be done by the php. The downside of javascript is that user can turn off the javascript and it will not work as you expected.
 
-It is always good to use php when you have to connect to the database and do the robust and secure scripting.
+It is always good to use php when you have to connect to the database and do the robust and secure scripting. I'd use javascript function for some math tutorial I guess:) though i even used it to make an interactive app
+
+
+
+
+GET and POST methods:
+
+
+    You should use $_GET when someone is requesting data from your application.
+    And you should use $_POST when someone is pushing (inserting or updating ; or deleting) data to your application.
+
+
+            $_GET function is used to collect values from a form sent with method="get".
+
+            Information sent from a form with the GET method is visible to everyone (it will be displayed in the browser's address bar) and has limits on the amount of information to send (max. 100 characters)
+
+            $_POST function is used to collect values from a form sent with method="post".
+
+            Information sent from a form with the POST method is invisible to others and has no limits on the amount of information to send. 
+
+
+GET:
+
+    Parameters remain in browser history because they are part of the URL
+    Can be bookmarked.
+    GET method should not be used when sending passwords or other sensitive information.
+    7607 character maximum size.
+    Url example: page2.php?category=sport
+
+POST:
+
+    Parameters are not saved in browser history.
+    Can not be bookmarked.
+    POST method used when sending passwords or other sensitive information.
+    8 Mb max size for the POST method.
+    Url example: page2.php
+
